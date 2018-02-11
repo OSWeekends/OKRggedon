@@ -1,40 +1,60 @@
 <template>
-  <div id="app">
-    <app-header></app-header>
-    <router-view/>
-  </div>
+<div class="page-container">
+  <md-app md-mode="reveal">
+    <md-app-toolbar class="md-primary">
+      <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
+        <md-icon>menu</md-icon>
+      </md-button>
+      <span class="md-title">{{ appName }}</span>
+    </md-app-toolbar>
+
+    <md-app-drawer :md-active.sync="menuVisible">
+      <md-toolbar class="md-transparent" md-elevation="0">Navigation</md-toolbar>
+
+      <md-list>
+        <md-list-item v-for="(quarter, key) in periods" :key="key">
+          <md-icon>event</md-icon>
+          <span class="md-list-item-text">{{ quarter.title }}</span>
+        </md-list-item>
+      </md-list>
+    </md-app-drawer>
+
+    <md-app-content class="page-content">
+      <p>content.</p>
+    </md-app-content>
+  </md-app>
+</div>
 </template>
 
 <script>
-import AppHeader from '@/components/AppHeader'
-
 export default {
-  components: {
-    AppHeader,
-  },
+  name: 'okr-app',
+  data: () => ({
+    menuVisible: false,
+    appName: 'OKRggeddon',
+    periods: [
+      { key:'1', year: 2018, quarter: 1, title: '2018 Q1' },
+      { key:'2', year: 2018, quarter: 2, title: '2018 Q2' },
+      { key:'3', year: 2018, quarter: 3, title: '2018 Q3' },
+      { key:'4', year: 2018, quarter: 4, title: '2018 Q4' },
+    ],
+  }),
 }
 </script>
 
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<style lang="scss" scoped>
+  @import "~vue-material/dist/theme/engine"; // Import the theme engine
 
-#nav {
-  padding: 30px;
-}
+  @include md-register-theme("default", (
+    primary: md-get-palette-color(purple, 800), // The primary color of your application
+    accent: md-get-palette-color(pink, A200) // The accent or secondary color
+  ));
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+  @import "~vue-material/dist/theme/all"; // Apply the theme
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+  .page-content {
+    height: 100vh;
+  }
 </style>
+

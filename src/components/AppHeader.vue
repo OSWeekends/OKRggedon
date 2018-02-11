@@ -1,7 +1,7 @@
 <template>
-  <header>
-    <p>OKRggeddon</p>
-  </header>
+  <md-toolbar class="md-primary">
+    <h3 class="md-title">OKRggeddon</h3>
+  </md-toolbar>
 </template>
 
 <script>
