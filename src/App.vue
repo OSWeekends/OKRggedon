@@ -5,14 +5,24 @@
       <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
         <md-icon>menu</md-icon>
       </md-button>
-      <span class="md-title">{{ appName }}</span>
+      <span class="md-title">
+        <md-icon>assignment_turned_in</md-icon>
+        {{ appName }}
+      </span>
     </md-app-toolbar>
 
     <md-app-drawer :md-active.sync="menuVisible">
-      <md-toolbar class="md-transparent" md-elevation="0">Navigation</md-toolbar>
+      <md-toolbar md-elevation="0">
+        <span class="md-title">Navigation</span>
+      </md-toolbar>
 
       <md-list>
-        <md-list-item v-for="(quarter, key) in periods" :key="key">
+        <md-list-item to="/">
+          <md-icon>home</md-icon>
+          <span class="md-list-item-text">Home</span>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item v-for="(quarter, key) in periods" :key="key" :to="quarter.link">
           <md-icon>event</md-icon>
           <span class="md-list-item-text">{{ quarter.title }}</span>
         </md-list-item>
@@ -20,7 +30,7 @@
     </md-app-drawer>
 
     <md-app-content class="page-content">
-      <p>content.</p>
+      <router-view></router-view>
     </md-app-content>
   </md-app>
 </div>
@@ -33,10 +43,10 @@ export default {
     menuVisible: false,
     appName: 'OKRggeddon',
     periods: [
-      { key:'1', year: 2018, quarter: 1, title: '2018 Q1' },
-      { key:'2', year: 2018, quarter: 2, title: '2018 Q2' },
-      { key:'3', year: 2018, quarter: 3, title: '2018 Q3' },
-      { key:'4', year: 2018, quarter: 4, title: '2018 Q4' },
+      { key:'1', year: 2018, quarter: 1, title: '2018 Q1', link: '2018-q1' },
+      { key:'2', year: 2018, quarter: 2, title: '2018 Q2', link: '2018-q2' },
+      { key:'3', year: 2018, quarter: 3, title: '2018 Q3', link: '2018-q3' },
+      { key:'4', year: 2018, quarter: 4, title: '2018 Q4', link: '2018-q4' },
     ],
   }),
 }
