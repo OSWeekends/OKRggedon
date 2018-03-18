@@ -43,15 +43,14 @@ export default {
     menuVisible: false,
     appName: 'OKRggeddon',
     periods: [
-      { key:'1', year: 2018, quarter: 1, title: '2018 Q1', link: '2018-q1' },
-      { key:'2', year: 2018, quarter: 2, title: '2018 Q2', link: '2018-q2' },
-      { key:'3', year: 2018, quarter: 3, title: '2018 Q3', link: '2018-q3' },
-      { key:'4', year: 2018, quarter: 4, title: '2018 Q4', link: '2018-q4' },
+      { key:'1', year: 2018, quarter: 1, title: '2018 Q1', link: '/quarter/2018-q1' },
+      { key:'2', year: 2018, quarter: 2, title: '2018 Q2', link: '/quarter/2018-q2' },
+      { key:'3', year: 2018, quarter: 3, title: '2018 Q3', link: '/quarter/2018-q3' },
+      { key:'4', year: 2018, quarter: 4, title: '2018 Q4', link: '/quarter/2018-q4' },
     ],
   }),
 }
 </script>
-
 
 <style lang="scss" scoped>
   @import "~vue-material/dist/theme/engine"; // Import the theme engine
